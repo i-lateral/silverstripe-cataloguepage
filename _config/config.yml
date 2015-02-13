@@ -1,0 +1,6 @@
+---
+Name: cataloguepageconfig
+---
+CatlalogueCategory:
+  extensions:
+    - CatalogueExtension
