@@ -17,7 +17,7 @@
     "require": {
         "silverstripe/framework": ">=3.1",
         "silverstripe/cms": ">=3.1",
-        "i-lateral/silverstripe-catalogue": "*",
+        "i-lateral/silverstripe-catalogue": "*"
     },
     "suggest": {
         "i-lateral/silverstripe-commerce": "Add ecommerce support to your website"
