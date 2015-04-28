@@ -14,10 +14,10 @@
         
         <hr />
         
-        <% if $Products.exists %>
+        <% if $SortedProducts.exists %>
             <div class="units-row line cataloguepage-products">
                 
-                <% loop $Products %>
+                <% loop $SortedProducts %>
                     <div class="unit-50 unit cataloguepage-product">
                         <h2>
                             <a href="$Link">
