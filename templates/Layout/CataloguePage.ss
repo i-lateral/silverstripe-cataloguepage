@@ -9,56 +9,33 @@
         </div>
     </article>
     
-    <% loop $Categories %>
-        <h2>$Title</h2>
-        
-        <hr />
-        
-        <% if $SortedProducts.exists %>
-            <div class="units-row line cataloguepage-products">
+    <div class="units-row line cataloguepage-products">
+        <% if $Categories.exists %>
+            <% loop $Children %>
+                <h2>$Title</h2>
                 
-                <% loop $SortedProducts %>
-                    <div class="unit-50 unit cataloguepage-product">
-                        <h2>
-                            <a href="$Link">
-                                $Title
-                            </a>
-                        </h2>
-                        
-                        <p class="image">
-                            <a href="$Link">$SortedImages.First.CroppedImage(555,350)</a>
-                        </p>
-                        
-                        <div class="units-row end units-mobile-50">
-                            <p class="unit-60">
-                                <strong class="price">
-                                    <% if $IncludesTax %>
-                                        {$PriceAndTax.nice}
-                                    <% else %>
-                                        {$Price.nice}
-                                    <% end_if %>
-                                </strong>
-                                
-                                <span class="tax">
-                                    <% if $TaxString %>
-                                        <span class="tax"> 
-                                            {$TaxString}
-                                        </span>
-                                    <% end_if %>
-                                </span>
-                            </p>
+                <hr />
+                
+                <% if $SortedProducts.exists %>
+                    <div class="units-row line cataloguepage-products">
+                        <% loop $SortedProducts %>
+                            <% include CataloguePageProduct %>
                             
-                            <p class="unit-40 right">
-                                <a class="btn btn-olive text-centered" href="$Link">View</a>
-                            </p>
-                        </div>
+                            <% if $MultipleOf(2) && not $Last %>
+                                </div><div class="units-row line cataloguepage-products">
+                            <% end_if %>
+                        <% end_loop %>
                     </div>
-                    
-                    <% if $MultipleOf(2) && not $Last %>
-                        </div><div class="units-row line catalogue-list">
-                    <% end_if %>
-                <% end_loop %>
-            </div>
+                <% end_if %>
+            <% end_loop %>
+        <% else %>
+            <% loop $Children %>
+                <% include CataloguePageProduct %>
+                
+                <% if $MultipleOf(2) && not $Last %>
+                    </div><div class="units-row line cataloguepage-products">
+                <% end_if %>
+            <% end_loop %>
         <% end_if %>
-    <% end_loop %>
+    </div>
 </div>

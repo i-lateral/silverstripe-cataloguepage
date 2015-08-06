@@ -1,8 +1,16 @@
 # Silverstripe CataloguePage Module
 
-A custom page type that allows mapping of multiple catalogue categories
-to a page in the CMS that then renders them (and their products) into a
-template.
+A custom page type that either:
+
+Displays all product object of a chosen classname on a CMS page
+
+Or
+
+Allows mapping of multiple categories to a page in the CMS that then
+renders them (and their products) into a template.
+
+The page type also includes a $PaginatedChildren variable to allow
+automatically breaking up larger product lists into smaller pages.
 
 ## Installation
 

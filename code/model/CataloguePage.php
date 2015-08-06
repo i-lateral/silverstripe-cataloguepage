@@ -1,6 +1,15 @@
 <?php
 
 class CataloguePage extends Page {
+    
+    /**
+     * Config variable to define what product class we are loading by
+     * default
+     * 
+     * @var string
+     * @config
+     */
+    private static $product_class = "Product";
 
     /**
      * @var string
@@ -10,11 +19,29 @@ class CataloguePage extends Page {
 	/**
 	 * @var string
 	 */
-	private static $description = 'Display product categories (and their products) on a page.';
+	private static $description = 'Display all products or products in selected categories on a page.';
     
     private static $many_many = array(
         "Categories" => "CatalogueCategory"
     );
+    
+    private static $allowed_children = array();
+    
+    public function Children() {
+        if($this->Categories()->exists())
+            return $this->Categories();
+        else
+            return $this->AllProducts();
+    }
+    
+    public function AllProducts() {
+        $class = $this->config()->product_class;
+        return $class::get();
+    }
+    
+    public function PaginatedChildren($length = 12) {
+        return new PaginatedList($this->Children(), $this->request);
+    }
     
     public function getCMSFields() {
         $fields = parent::getCMSFields();
