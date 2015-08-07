@@ -8,4 +8,8 @@ class CataloguePage_Controller extends Page_Controller {
         parent::init();
     }
     
+    public function PaginatedChildren($length = 12) {
+        return new PaginatedList($this->Children(), $this->request);
+    }
+    
 }

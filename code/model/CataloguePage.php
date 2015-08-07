@@ -39,10 +39,6 @@ class CataloguePage extends Page {
         return $class::get();
     }
     
-    public function PaginatedChildren($length = 12) {
-        return new PaginatedList($this->Children(), $this->request);
-    }
-    
     public function getCMSFields() {
         $fields = parent::getCMSFields();
         
