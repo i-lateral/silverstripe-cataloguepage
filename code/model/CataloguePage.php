@@ -1,6 +1,7 @@
 <?php
 
-class CataloguePage extends Page {
+class CataloguePage extends Page
+{
     
     /**
      * Config variable to define what product class we are loading by
@@ -16,10 +17,10 @@ class CataloguePage extends Page {
      */
     private static $icon = "cataloguepage/images/catalogue.png";
     
-	/**
-	 * @var string
-	 */
-	private static $description = 'Display all products or products in selected categories on a page.';
+    /**
+     * @var string
+     */
+    private static $description = 'Display all products or products in selected categories on a page.';
     
     private static $many_many = array(
         "Categories" => "CatalogueCategory"
@@ -27,36 +28,39 @@ class CataloguePage extends Page {
     
     private static $allowed_children = array();
     
-    public function Children() {
-        if($this->Categories()->exists())
+    public function Children()
+    {
+        if ($this->Categories()->exists()) {
             return $this->Categories();
-        else
+        } else {
             return $this->AllProducts();
+        }
     }
     
-    public function AllProducts() {
+    public function AllProducts()
+    {
         $class = $this->config()->product_class;
         return $class::get();
     }
     
-    public function getCMSFields() {
+    public function getCMSFields()
+    {
         $fields = parent::getCMSFields();
         
         $gridconfig = new GridFieldConfig_RelationEditor();
         
         $categoryfield = GridField::create(
-			_t("CataloguePage.Categories", "Categories"),
-			"",
+            _t("CataloguePage.Categories", "Categories"),
+            "",
             $this->Categories(),
             $gridconfig
         );
         
         $fields->addFieldToTab(
-			'Root.Categories',
-			$categoryfield
-		);
-		
+            'Root.Categories',
+            $categoryfield
+        );
+        
         return $fields;
     }
-    
 }
