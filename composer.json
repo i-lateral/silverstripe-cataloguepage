@@ -1,6 +1,6 @@
 {
   "name": "silverstripe/cataloguepage",
-  "description": "Silverstripe module allowing the mapping of product categories to a page and then rendering them into the template",
+  "description": "Silverstripe module that creates a simple page in the CMS to map products and categories to.",
     "type": "silverstripe-module",
     "homepage": "http://github.com/i-lateral/silverstripe-cataloguepage",
     "keywords": ["silverstripe", "commerce", "ecommerce", "product", "category", "catalogue", "page"],
