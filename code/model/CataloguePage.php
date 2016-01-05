@@ -10,6 +10,24 @@ class CataloguePage extends Page {
      * @config
      */
     private static $product_class = "Product";
+    
+    /**
+     * Config variable to define what controller will be used to display
+     * a product
+     * 
+     * @var string
+     * @config
+     */
+    private static $base_product_controller = "CatalogueProductController";
+    
+    /**
+     * Config variable to define what category class we are loading by
+     * default
+     * 
+     * @var string
+     * @config
+     */
+    private static $category_class = "Category";
 
     /**
      * @var string
@@ -21,22 +39,13 @@ class CataloguePage extends Page {
 	 */
 	private static $description = 'Display all products or products in selected categories on a page.';
     
-    private static $many_many = array(
-        "Categories" => "CatalogueCategory"
-    );
-    
     private static $allowed_children = array();
     
     public function Children() {
-        if($this->Categories()->exists())
+        if($this->Products()->exists())
+            return $this->Products();
+        elseif($this->Categories()->exists())
             return $this->Categories();
-        else
-            return $this->AllProducts();
-    }
-    
-    public function AllProducts() {
-        $class = $this->config()->product_class;
-        return $class::get();
     }
     
     public function getCMSFields() {
@@ -44,16 +53,24 @@ class CataloguePage extends Page {
         
         $gridconfig = new GridFieldConfig_RelationEditor();
         
-        $categoryfield = GridField::create(
-			_t("CataloguePage.Categories", "Categories"),
-			"",
-            $this->Categories(),
-            $gridconfig
-        );
+        $fields->addFieldToTab(
+			'Root.Products',
+			GridField::create(
+                _t("CataloguePage.Products", "Products"),
+                "",
+                $this->Products(),
+                $gridconfig
+            )
+		);
         
         $fields->addFieldToTab(
 			'Root.Categories',
-			$categoryfield
+			GridField::create(
+                _t("CataloguePage.Categories", "Categories"),
+                "",
+                $this->Categories(),
+                $gridconfig
+            )
 		);
 		
         return $fields;
