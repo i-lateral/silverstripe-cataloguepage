@@ -1,6 +1,7 @@
 <?php
 
-class CataloguePage extends Page {
+class CataloguePage extends Page
+{
     
     /**
      * Config variable to define what product class we are loading by
@@ -34,21 +35,24 @@ class CataloguePage extends Page {
      */
     private static $icon = "cataloguepage/images/catalogue.png";
     
-	/**
-	 * @var string
-	 */
-	private static $description = 'Display all products or products in selected categories on a page.';
+    /**
+     * @var string
+     */
+    private static $description = 'Display all products or products in selected categories on a page.';
     
     private static $allowed_children = array();
     
-    public function Children() {
-        if($this->Products()->exists())
+    public function Children()
+    {
+        if($this->Products()->exists()) {
             return $this->Products();
-        elseif($this->Categories()->exists())
+        } elseif($this->Categories()->exists()) {
             return $this->Categories();
+        }
     }
     
-    public function getCMSFields() {
+    public function getCMSFields()
+    {
         $fields = parent::getCMSFields();
         
         $gridconfig = new GridFieldConfig_RelationEditor();
@@ -72,8 +76,7 @@ class CataloguePage extends Page {
                 $gridconfig
             )
 		);
-		
+        
         return $fields;
     }
-    
 }

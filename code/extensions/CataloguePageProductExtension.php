@@ -1,8 +1,10 @@
 <?php
 
-class CataloguePageProductExtension extends DataExtension {
+class CataloguePageProductExtension extends DataExtension
+{
     
-    public function updateRelativeLink($base, $action) {
+    public function updateRelativeLink($base, $action)
+    {
         $page = CataloguePage::get()->first();
         
         $link = Controller::join_links(
@@ -14,7 +16,8 @@ class CataloguePageProductExtension extends DataExtension {
         return $link;
     }
     
-    public function updateAncestors($ancestors, $include_parent) {
+    public function updateAncestors($ancestors, $include_parent)
+    {
         
         // Check if there is a catalogue page with this product
         $page = CataloguePage::get()
@@ -40,7 +43,9 @@ class CataloguePageProductExtension extends DataExtension {
                 $ancestors->remove($ancestor);
             }
             
-            if($include_parent) $ancestors->push($page);
+            if($include_parent) {
+                $ancestors->push($page);
+            }
             
             while($page = $page->getParent()) {
                 $ancestors->push($page);

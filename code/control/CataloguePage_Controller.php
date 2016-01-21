@@ -1,6 +1,7 @@
 <?php
 
-class CataloguePage_Controller extends Page_Controller {
+class CataloguePage_Controller extends Page_Controller
+{
     
     private static $allowed_actions = array(
         "product"
@@ -16,15 +17,18 @@ class CataloguePage_Controller extends Page_Controller {
 		'$Action/$ID' => 'handleAction',
 	);
 
-    public function init() {
+    public function init()
+    {
         parent::init();
     }
     
-    public function PaginatedChildren($length = 12) {
+    public function PaginatedChildren($length = 12)
+    {
         return new PaginatedList($this->Children(), $this->request);
     }
     
-    public function product($request) {
+    public function product($request)
+    {
         // Shift the current url up one and get the URL segment
 		$request->shiftAllParams();
         $urlsegment = $request->param('URLSegment');
@@ -56,7 +60,8 @@ class CataloguePage_Controller extends Page_Controller {
 	 * @param string $action
 	 * @return CatalogueController
 	 */
-	protected static function controller_for($object, $action = null) {
+	protected static function controller_for($object, $action = null)
+    {
 		if ($object->class == 'CatalogueProduct') {
 			$controller = "CatalogueProductController";
 		} else {
@@ -87,12 +92,12 @@ class CataloguePage_Controller extends Page_Controller {
 	 *
 	 * @return HTMLText|SS_HTTPResponse
 	 */
-	protected function handleAction($request, $model) {
+	protected function handleAction($request, $model)
+    {
 		//we return nested controllers, so the parsed URL params need to be discarded for the subsequent controllers
 		// to work
 		$request->shiftAllParams();
         
 		return parent::handleAction($request, $model);
 	}
-    
 }
