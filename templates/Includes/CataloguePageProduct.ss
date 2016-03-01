@@ -18,16 +18,16 @@
                     {$Price.nice}
                 <% end_if %>
             </strong>
-            
+
             <span class="tax">
                 <% if $TaxString %>
-                    <span class="tax"> 
+                    <span class="tax">
                         {$TaxString}
                     </span>
                 <% end_if %>
             </span>
         </p>
-        
+
         <p class="unit-40 right">
             <a class="btn btn-olive text-centered" href="$Link">View</a>
         </p>
