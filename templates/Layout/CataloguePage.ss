@@ -8,19 +8,19 @@
             $Content
         </div>
     </article>
-    
+
     <div class="units-row line cataloguepage-products">
         <% if $Categories.exists %>
             <% loop $Children %>
                 <h2>$Title</h2>
-                
+
                 <hr />
-                
+
                 <% if $SortedProducts.exists %>
                     <div class="units-row line cataloguepage-products">
                         <% loop $SortedProducts %>
                             <% include CataloguePageProduct %>
-                            
+
                             <% if $MultipleOf(2) && not $Last %>
                                 </div><div class="units-row line cataloguepage-products">
                             <% end_if %>
@@ -31,7 +31,7 @@
         <% else %>
             <% loop $Children %>
                 <% include CataloguePageProduct %>
-                
+
                 <% if $MultipleOf(2) && not $Last %>
                     </div><div class="units-row line cataloguepage-products">
                 <% end_if %>

@@ -1,7 +1,7 @@
 <?php
 
 class CataloguePageAssociationManager {
-    
+
     public static function setup() {
         // Setup manually mapping of products to a catalogue page
         $product_class = CataloguePage::config()->product_class;
@@ -12,15 +12,15 @@ class CataloguePageAssociationManager {
             "Products" => $product_class,
             "Categories" => $category_class
         );
-        
+
         // Setup inverse
         $product_class::config()->belongs_many_many = array(
             "CataloguePages" => "CataloguePage"
         );
-        
+
         $category_class::config()->belongs_many_many = array(
             "CataloguePages" => "CataloguePage"
         );
     }
-    
+
 }
