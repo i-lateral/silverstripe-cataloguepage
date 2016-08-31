@@ -1,9 +1,7 @@
 en:
   CataloguePage:
     Categories: Categories
-    DESCRIPTION: 'Display product categories (and their products) on a page.'
+    DESCRIPTION: 'Display all products or products in selected categories on a page.'
     PLURALNAME: 'Catalogue Pages'
+    Products: Products
     SINGULARNAME: 'Catalogue Page'
-  SiteTree:
-    PLURALNAME: Pages
-    SINGULARNAME: Page
