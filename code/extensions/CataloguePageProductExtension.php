@@ -5,8 +5,22 @@ class CataloguePageProductExtension extends DataExtension
     
     public function updateRelativeLink($base, $action)
     {
-        $page = CataloguePage::get()->first();
+        $page = null;
+
+        // Try to find the current product's page
+        if ($this->owner->CataloguePages()->exists()) {
+            $page = $this->owner->CataloguePages()->first();
+        } elseif ($category = $this->owner->Categories()->first()) {
+            if($category->CataloguePages()->exists()) {
+                $page = $category->CataloguePages()->first();
+            }
+        }
         
+        // If no page has been found, revert to a default
+        if (!$page) {
+            $page = CataloguePage::get()->first();
+        }
+
         $link = Controller::join_links(
             $page->RelativeLink("product"),
             $this->owner->URLSegment,
