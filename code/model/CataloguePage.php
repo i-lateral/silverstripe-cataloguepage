@@ -55,15 +55,13 @@ class CataloguePage extends Page
     {
         $fields = parent::getCMSFields();
         
-        $gridconfig = new GridFieldConfig_RelationEditor();
-        
         $fields->addFieldToTab(
 			'Root.Products',
 			GridField::create(
                 _t("CataloguePage.Products", "Products"),
                 "",
                 $this->Products(),
-                $gridconfig
+                new GridFieldConfig_RelationEditor()
             )
 		);
         
@@ -73,7 +71,7 @@ class CataloguePage extends Page
                 _t("CataloguePage.Categories", "Categories"),
                 "",
                 $this->Categories(),
-                $gridconfig
+                new GridFieldConfig_RelationEditor()
             )
 		);
         

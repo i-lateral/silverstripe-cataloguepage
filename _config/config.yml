@@ -1,10 +1,6 @@
 ---
 Name: cataloguepageconfig
 ---
-CatlalogueCategory:
-  extensions:
-    - CataloguePageCatalogueExtension
 CatalogueProduct:
   extensions:
-    - CataloguePageCatalogueExtension
     - CataloguePageProductExtension
