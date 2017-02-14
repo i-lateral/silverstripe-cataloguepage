@@ -1,4 +1,4 @@
-<div class="unit-50 unit cataloguepage-product">
+<div class="unit-33 col-md-4 col-sm-6 unit cataloguepage-product">
     <h2>
         <a href="$Link">
             $Title
@@ -6,11 +6,17 @@
     </h2>
 
     <p class="image">
-        <a href="$Link">$SortedImages.First.CroppedImage(555,350)</a>
+        <% if $SortedImages.First %>
+            <a href="$Link">
+                <% with $SortedImages.First.CroppedImage(555,350) %>
+                    <img src="$URL" title="$Title" alt="$Title" class="img-responsive" />
+                <% end_with %>
+            </a>
+        <% end_if %>
     </p>
 
-    <div class="units-row end units-mobile-50">
-        <p class="unit-60">
+    <div class="units-row end row units-mobile-50">
+        <p class="unit-60 col-md-7 col-sm-6">
             <strong class="price">
                 <% if $IncludesTax %>
                     {$PriceAndTax.nice}
@@ -28,8 +34,8 @@
             </span>
         </p>
         
-        <p class="unit-40 right">
-            <a class="btn btn-olive text-centered" href="$Link">View</a>
+        <p class="unit-40 col-md-5 col-sm-6 text-right right">
+            <a class="btn btn-olive btn-primary text-centered" href="$Link">View</a>
         </p>
     </div>
 </div>
