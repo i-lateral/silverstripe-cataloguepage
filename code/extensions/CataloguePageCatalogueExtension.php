@@ -1,6 +1,6 @@
 <?php
 
-class CatalogueExtension extends DataExtension
+class CataloguePageCatalogueExtension extends DataExtension
 {
     
     private static $belongs_many_many = array(
