@@ -12,6 +12,12 @@ class CataloguePageAssociationManager {
             "Products" => $product_class,
             "Categories" => $category_class
         );
+
+        // Setup many many associations
+        CataloguePage::config()->many_many_extraFields = array(
+            'Products' => array('SortOrder' => 'Int'),
+            'Categories' => array('SortOrder' => 'Int')
+        );
         
         // Setup inverse
         $product_class::config()->belongs_many_many = array(

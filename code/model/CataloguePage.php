@@ -42,13 +42,41 @@ class CataloguePage extends Page
     
     private static $allowed_children = array();
     
+    /**
+     * Spoof the standard CMS "Children" function to return either
+     * related products or categories
+     *
+     * @return SSList
+     */
     public function Children()
     {
         if($this->Products()->exists()) {
-            return $this->Products();
+            return $this->SortedProducts();
         } elseif($this->Categories()->exists()) {
-            return $this->Categories();
+            return $this->SortedCategories();
+        } else {
+            return ArrayList::create();
         }
+    }
+
+    /**
+     * Get a list of sorted products (sorted by sort order)
+     *
+     * @return ManyManyList
+     */
+    public function SortedProducts()
+    {
+        return $this->Products()->sort("Sortorder");
+    }
+    
+    /**
+     * Get a list of sorted cateogories (sorted by sort order)
+     *
+     * @return ManyManyList
+     */
+    public function SortedCategories()
+    {
+        return $this->Categories()->sort("Sortorder");
     }
     
     public function getCMSFields()
@@ -61,7 +89,11 @@ class CataloguePage extends Page
                 _t("CataloguePage.Products", "Products"),
                 "",
                 $this->Products(),
-                new GridFieldConfig_RelationEditor()
+                new GridFieldConfig_CatalogueRelated(
+                    $this->config()->product_class,
+                    null,
+                    "SortOrder"
+                )
             )
 		);
         
@@ -71,7 +103,11 @@ class CataloguePage extends Page
                 _t("CataloguePage.Categories", "Categories"),
                 "",
                 $this->Categories(),
-                new GridFieldConfig_RelationEditor()
+                new GridFieldConfig_CatalogueRelated(
+                    $this->config()->category_class,
+                    null,
+                    "SortOrder"
+                )
             )
 		);
         
