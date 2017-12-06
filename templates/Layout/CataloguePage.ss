@@ -8,11 +8,12 @@
     
     <div class="units-row line cataloguepage-products">
         <% if $Categories.exists %>
-            <% loop $Children %>
-                <h2>$Title</h2>
-                
-                <hr />
-                
+            <% loop $Categories %>
+                <% if $Up.Categories.Count > 1 %>
+                    <h2>$Title</h2>
+                    
+                    <hr />
+                <% end_if %>
                 <% if $SortedProducts.exists %>
                     <div class="units-row row line cataloguepage-products">
                         <% loop $SortedProducts %>
