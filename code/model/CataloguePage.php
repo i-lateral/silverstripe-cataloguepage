@@ -42,6 +42,14 @@ class CataloguePage extends Page
     
     private static $allowed_children = array();
     
+    private static $db = array(
+        'CategoryChildren' => 'Boolean'
+    );
+
+    private static $defaults = array(
+        'CategoryChildren' => false
+    );
+
     /**
      * Spoof the standard CMS "Children" function to return either
      * related products or categories
@@ -52,7 +60,7 @@ class CataloguePage extends Page
     {
         if($this->Products()->exists()) {
             return $this->SortedProducts();
-        } elseif($this->Categories()->exists()) {
+        } elseif($this->Categories()->exists() && $this->CategoryChildren) {
             return $this->SortedCategories();
         } else {
             return ArrayList::create();
@@ -111,6 +119,21 @@ class CataloguePage extends Page
             )
 		);
         
+        return $fields;
+    }
+
+    public function getSettingsFields()
+    {
+        $fields = parent::getSettingsFields();
+
+        $fields->addFieldToTab(
+            'Root.Settings',
+            CheckboxField::create(
+                'CategoryChildren',
+                'show categories as children'
+            )
+        );
+
         return $fields;
     }
 }

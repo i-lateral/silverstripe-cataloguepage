@@ -2,6 +2,10 @@
 
 This doucument covers all notable changes and additions.
 
+## [1.3.1]
+
+* Added option to show/hide categories when calling children
+
 ## [1.3]
 
 * Added drag and drop re-ordering to products and categories
