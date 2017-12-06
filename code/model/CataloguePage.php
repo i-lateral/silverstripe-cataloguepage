@@ -43,7 +43,8 @@ class CataloguePage extends Page
     private static $allowed_children = array();
     
     private static $db = array(
-        'CategoryChildren' => 'Boolean'
+        'CategoryChildren' => 'Boolean',
+        'CompileProducts' => 'Boolean'
     );
 
     private static $defaults = array(
@@ -126,11 +127,17 @@ class CataloguePage extends Page
     {
         $fields = parent::getSettingsFields();
 
-        $fields->addFieldToTab(
+        $fields->addFieldsToTab(
             'Root.Settings',
-            CheckboxField::create(
-                'CategoryChildren',
-                'show categories as children'
+            array(
+                CheckboxField::create(
+                    'CategoryChildren',
+                    'show categories as children'
+                ),
+                CheckboxField::create(
+                    'CompileProducts',
+                    'show all products as a single list'
+                )
             )
         );
 

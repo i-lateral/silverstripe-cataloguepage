@@ -1,6 +1,9 @@
 # Changelog
 
 This doucument covers all notable changes and additions.
+## [1.3.2]
+
+* Added ability to compile products into single paginated list
 
 ## [1.3.1]
 
