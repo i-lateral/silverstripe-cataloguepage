@@ -33,9 +33,11 @@ class CataloguePage_Controller extends Page_Controller
 
         if ($this->Categories()->exists() && $this->CompileProducts) {
             $cats = $this->Categories()->column('ID');
-            $raw_products = Product::get()->filter('Categories.ID',$cats);
-            $enabled_products = $raw_products->filter('Disabled',0);
-            $products = new PaginatedList($enabled_products, $this->getRequest());
+            $raw_products = Product::get()->filter([
+                'Categories.ID' => $cats,
+                'Disabled' => 0
+            ]);
+            $products = new PaginatedList($raw_products, $this->getRequest());
             $products->setPageLength($page_length);
         }
 
