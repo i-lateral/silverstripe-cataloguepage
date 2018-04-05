@@ -21,13 +21,16 @@ class CataloguePageProductExtension extends DataExtension
             $page = CataloguePage::get()->first();
         }
 
-        $link = Controller::join_links(
-            $page->RelativeLink("product"),
-            $this->owner->URLSegment,
-            $action
-        );
-        
-        return $link;
+        if ($page) {
+            $link = Controller::join_links(
+                $page->RelativeLink("product"),
+                $this->owner->URLSegment,
+                $action
+            );
+            
+            return $link;
+        }
+        return $base;
     }
     
     public function updateAncestors($ancestors, $include_parent)
