@@ -1,5 +1,11 @@
 <?php
 
+namespace ilateral\SilverStripe\CataloguePage\Extensions;
+
+use SilverStripe\ORM\DataExtension;
+use SilverStripe\Control\Controller;
+use ilateral\SilverStripe\CataloguePage\Model\CataloguePage;
+
 class CataloguePageProductExtension extends DataExtension
 {
     

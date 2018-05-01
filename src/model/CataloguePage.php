@@ -1,5 +1,14 @@
 <?php
 
+namespace ilateral\SilverStripe\CataloguePage\Model;
+
+use Page;
+use Product;
+use SilverStripe\ORM\ArrayList;
+use SilverStripe\Forms\CheckboxField;
+use SilverStripe\Forms\GridField\GridField;
+use SilverCommerce\CatalogueAdmin\Forms\GridField\GridFieldConfig_CatalogueRelated;
+
 class CataloguePage extends Page
 {
     
@@ -10,7 +19,7 @@ class CataloguePage extends Page
      * @var string
      * @config
      */
-    private static $product_class = "Product";
+    private static $product_class = Product::class;
     
     /**
      * Config variable to define what controller will be used to display
@@ -19,7 +28,7 @@ class CataloguePage extends Page
      * @var string
      * @config
      */
-    private static $base_product_controller = "CatalogueProductController";
+    private static $base_product_controller = CatalogueProductController::class;
     
     /**
      * Config variable to define what category class we are loading by

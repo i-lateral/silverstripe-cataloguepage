@@ -1,7 +1,7 @@
 {
   "name": "silverstripe/cataloguepage",
   "description": "Silverstripe module that creates a simple page in the CMS to map products and categories to.",
-    "type": "silverstripe-module",
+    "type": "silverstripe-vendormodule",
     "homepage": "http://github.com/i-lateral/silverstripe-cataloguepage",
     "keywords": ["silverstripe", "commerce", "ecommerce", "product", "category", "catalogue", "page"],
     "license": "BSD-3-Clause",
@@ -15,14 +15,16 @@
         "issues": "http://github.com/i-lateral/silverstripe-catalogue/issues"
     },
     "require": {
-        "silverstripe/framework": ">=3.1",
-        "silverstripe/cms": ">=3.1"
+        "silverstripe/framework": "4.*",
+        "silverstripe/cms": "4.*"
     },
     "suggest": {
         "i-lateral/silverstripe-catalogue": "*",
         "i-lateral/silverstripe-commerce": "Add ecommerce support to your website"
     },
-    "extra": {
-        "installer-name": "cataloguepage"
+    "autoload": {
+        "psr-4": {
+            "ilateral\\SilverStripe\\CataloguePage\\": "src/"
+        }
     }
 }

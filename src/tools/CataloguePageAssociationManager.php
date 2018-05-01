@@ -1,5 +1,9 @@
 <?php
 
+namespace ilateral\SilverStripe\CataloguePage\Tools;
+
+use ilateral\SilverStripe\CataloguePage\Model\CataloguePage;
+
 class CataloguePageAssociationManager {
     
     public static function setup() {

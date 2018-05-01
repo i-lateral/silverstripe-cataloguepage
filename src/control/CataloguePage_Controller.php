@@ -1,6 +1,14 @@
 <?php
 
-class CataloguePage_Controller extends Page_Controller
+namespace ilateral\SilverStripe\CataloguePage\Model;
+
+use SilverStripe\Core\ClassInfo;
+use SilverStripe\ORM\PaginatedList;
+use SilverStripe\Core\Injector\Injector;
+use ilateral\SilverStripe\CataloguePage\Model\CataloguePage;
+use PageController;
+
+class CataloguePage_Controller extends PageController
 {
     
     private static $allowed_actions = array(
