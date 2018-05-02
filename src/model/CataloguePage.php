@@ -54,11 +54,13 @@ class CataloguePage extends Page
     
     private static $db = array(
         'CategoryChildren' => 'Boolean',
-        'CompileProducts' => 'Boolean'
+        'CompileProducts' => 'Boolean',
+        'ProductChildren' => 'Boolean'
     );
 
     private static $defaults = array(
-        'CategoryChildren' => false
+        'CategoryChildren' => false,
+        'ProductChildren' => false
     );
 
     /**
@@ -69,7 +71,7 @@ class CataloguePage extends Page
      */
     public function Children()
     {
-        if($this->Products()->exists()) {
+        if($this->Products()->exists() && $this->ProductChildren) {
             return $this->SortedProducts();
         } elseif($this->Categories()->exists() && $this->CategoryChildren) {
             return $this->SortedCategories();
@@ -141,12 +143,16 @@ class CataloguePage extends Page
             'Root.Settings',
             array(
                 CheckboxField::create(
+                    'ProductChildren',
+                    'Show products as children'
+                ),                
+                CheckboxField::create(
                     'CategoryChildren',
-                    'show categories as children'
+                    'Show categories as children'
                 ),
                 CheckboxField::create(
                     'CompileProducts',
-                    'show all products as a single list'
+                    'Show all products as a single list'
                 )
             )
         );

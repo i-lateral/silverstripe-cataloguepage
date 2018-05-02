@@ -67,7 +67,7 @@
                 <% end_if %>
             <% end_loop %>
         <% else %>
-            <% loop $Children %>
+            <% loop $SortedProducts %>
                 <% include ilateral\\SilverStripe\\CataloguePage\\CataloguePageProduct %>
                 
                 <% if $MultipleOf(2) && not $Last %>
