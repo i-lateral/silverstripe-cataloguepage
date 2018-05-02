@@ -19,8 +19,7 @@
         "silverstripe/cms": "4.*"
     },
     "suggest": {
-        "i-lateral/silverstripe-catalogue": "*",
-        "i-lateral/silverstripe-commerce": "Add ecommerce support to your website"
+        "silvercommerce/catalogue-admin": "*"
     },
     "autoload": {
         "psr-4": {
