@@ -10,7 +10,7 @@
         <% if $CompiledProducts %>
             <div class="row line catalogue-list">
                 <% loop $CompiledProducts %>
-                    <% include CataloguePageProduct %>
+                    <% include ilateral\\SilverStripe\\CataloguePage\\CataloguePageProduct %>
 
                     <% if $MultipleOf(3) && not $Last %></div><div class="row catalogue-list"><% end_if %>
                 <% end_loop %>
@@ -57,7 +57,7 @@
                 <% if $SortedProducts.exists %>
                     <div class="units-row row line cataloguepage-products">
                         <% loop $SortedProducts %>
-                            <% include CataloguePageProduct %>
+                            <% include ilateral\\SilverStripe\\CataloguePage\\CataloguePageProduct %>
                             
                             <% if $MultipleOf(2) && not $Last %>
                                 </div><div class="units-row row line cataloguepage-products">
@@ -68,7 +68,7 @@
             <% end_loop %>
         <% else %>
             <% loop $Children %>
-                <% include CataloguePageProduct %>
+                <% include ilateral\\SilverStripe\\CataloguePage\\CataloguePageProduct %>
                 
                 <% if $MultipleOf(2) && not $Last %>
                     </div><div class="units-row row line cataloguepage-products">

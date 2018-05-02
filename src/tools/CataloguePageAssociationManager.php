@@ -2,7 +2,12 @@
 
 namespace ilateral\SilverStripe\CataloguePage\Tools;
 
+use SilverStripe\Dev\Debug;
+use SilverStripe\Assets\File;
+use SilverStripe\CMS\Model\SiteTree;
+use SilverStripe\Core\Config\Config;
 use ilateral\SilverStripe\CataloguePage\Model\CataloguePage;
+use ilateral\SilverStripe\CataloguePage\Extensions\CataloguePageProductExtension;
 
 class CataloguePageAssociationManager {
     
@@ -11,26 +16,57 @@ class CataloguePageAssociationManager {
         $product_class = CataloguePage::config()->product_class;
         $category_class = CataloguePage::config()->category_class;
 
-        // Setup many many associations
-        CataloguePage::config()->many_many = array(
+        $new = [
             "Products" => $product_class,
             "Categories" => $category_class
+        ];
+
+        // Setup many many associations
+        Config::modify()->merge(
+            CataloguePage::class, 
+            'many_many', 
+            $new
         );
 
         // Setup many many associations
-        CataloguePage::config()->many_many_extraFields = array(
-            'Products' => array('SortOrder' => 'Int'),
-            'Categories' => array('SortOrder' => 'Int')
+        Config::modify()->merge(
+            CataloguePage::class,
+            'many_many_extraFields',
+            [
+                'Products' => array('SortOrder' => 'Int'),
+                'Categories' => array('SortOrder' => 'Int')
+            ]
         );
+
+        if (class_exists($product_class)) {
+            Config::modify()->merge(
+                $product_class,
+                'extensions',
+                [
+                    CataloguePageProductExtension::class
+                ]
+            );
+
+            // Setup inverse
+            Config::modify()->merge(
+                $product_class,
+                'belongs_many_many',
+                [
+                    "CataloguePages" => CataloguePage::class
+                ]
+            );
+        }
         
-        // Setup inverse
-        $product_class::config()->belongs_many_many = array(
-            "CataloguePages" => "CataloguePage"
-        );
-        
-        $category_class::config()->belongs_many_many = array(
-            "CataloguePages" => "CataloguePage"
-        );
+        if (class_exists($category_class)) {
+            Config::modify()->merge(
+                $category_class,
+                'belongs_many_many',
+                [
+                    "CataloguePages" => CataloguePage::class
+                ]
+            );
+        }
+
     }
     
 }

@@ -62,15 +62,15 @@ class CataloguePageProductExtension extends DataExtension
         
         if($page) {
             // Clear all ancestors
-            foreach($ancestors as $ancestor) {
+            foreach ($ancestors as $ancestor) {
                 $ancestors->remove($ancestor);
             }
             
-            if($include_parent) {
+            if ($include_parent) {
                 $ancestors->push($page);
             }
             
-            while($page = $page->getParent()) {
+            while ($page = $page->getParent()) {
                 $ancestors->push($page);
             }
         }

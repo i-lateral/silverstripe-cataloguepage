@@ -11,6 +11,7 @@ use SilverCommerce\CatalogueAdmin\Forms\GridField\GridFieldConfig_CatalogueRelat
 
 class CataloguePage extends Page
 {
+    private static $table_name = 'CataloguePage';
     
     /**
      * Config variable to define what product class we are loading by
@@ -151,5 +152,20 @@ class CataloguePage extends Page
         );
 
         return $fields;
+    }
+
+    /**
+     * Collate selected descendants of this page.
+     *
+     * {@link $condition} will be evaluated on each descendant, and if it is succeeds, that item will be added to the
+     * $collator array.
+     *
+     * @param string $condition The PHP condition to be evaluated. The page will be called $item
+     * @param array  $collator  An array, passed by reference, to collect all of the matching descendants.
+     * @return bool
+     */
+    public function collateDescendants($condition, &$collator)
+    {
+        return false;
     }
 }

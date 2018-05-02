@@ -8,8 +8,8 @@
     <p class="image">
         <% if $SortedImages.First %>
             <a href="$Link">
-                <% with $SortedImages.First.CroppedImage(555,350) %>
-                    <img src="$URL" title="$Title" alt="$Title" class="img-responsive" />
+                <% with $SortedImages.First.Fill(555,350) %>
+                    <img src="$URL" title="$Title" alt="$Title" class="img-responsive img-fluid" />
                 <% end_with %>
             </a>
         <% end_if %>

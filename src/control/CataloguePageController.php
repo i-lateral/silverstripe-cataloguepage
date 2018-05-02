@@ -8,7 +8,7 @@ use SilverStripe\Core\Injector\Injector;
 use ilateral\SilverStripe\CataloguePage\Model\CataloguePage;
 use PageController;
 
-class CataloguePage_Controller extends PageController
+class CataloguePageController extends PageController
 {
     
     private static $allowed_actions = array(
