@@ -13,8 +13,14 @@ class CataloguePageAssociationManager {
     
     public static function setup() {
         // Setup manually mapping of products to a catalogue page
-        $product_class = CataloguePage::config()->product_class;
-        $category_class = CataloguePage::config()->category_class;
+        $product_class = Config::inst()->get(
+            CataloguePage::class, 
+            'product_class'
+        );
+        $category_class = Config::inst()->get(
+            CataloguePage::class, 
+            'category_class'
+        );
 
         $new = [
             "Products" => $product_class,

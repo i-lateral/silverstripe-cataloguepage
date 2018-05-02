@@ -2,11 +2,15 @@
 
 namespace ilateral\SilverStripe\CataloguePage\Model;
 
+use Product;
+use PageController;
+use SilverStripe\Dev\Debug;
+use SilverStripe\ORM\DataList;
 use SilverStripe\Core\ClassInfo;
 use SilverStripe\ORM\PaginatedList;
+use SilverStripe\Core\Config\Config;
 use SilverStripe\Core\Injector\Injector;
 use ilateral\SilverStripe\CataloguePage\Model\CataloguePage;
-use PageController;
 
 class CataloguePageController extends PageController
 {
@@ -37,14 +41,29 @@ class CataloguePageController extends PageController
 	
     public function getCompiledProducts($page_length = 30)
     {
+        $tag = $this->getRequest()->getVar('t');
         $products = false;
+        $product_class = Config::inst()->get(
+            CataloguePage::class, 
+            'product_class'
+        );
 
         if ($this->Categories()->exists() && $this->CompileProducts) {
             $cats = $this->Categories()->column('ID');
-            $raw_products = Product::get()->filter([
+
+            $filter = [
                 'Categories.ID' => $cats,
                 'Disabled' => 0
-            ]);
+            ];
+    
+            if ($tag) {
+                $filter["Tags.URLSegment"] = $tag;
+            }
+            
+            $raw_products = DataList::create($product_class)
+                ->filter(
+                    $filter
+                );
             $products = new PaginatedList($raw_products, $this->getRequest());
             $products->setPageLength($page_length);
         }
