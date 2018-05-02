@@ -3,7 +3,6 @@
 namespace ilateral\SilverStripe\CataloguePage\Model;
 
 use Page;
-use Product;
 use SilverStripe\ORM\ArrayList;
 use SilverStripe\Forms\CheckboxField;
 use SilverStripe\Forms\GridField\GridField;
@@ -20,7 +19,7 @@ class CataloguePage extends Page
      * @var string
      * @config
      */
-    private static $product_class = Product::class;
+    private static $product_class;
     
     /**
      * Config variable to define what controller will be used to display
@@ -29,7 +28,7 @@ class CataloguePage extends Page
      * @var string
      * @config
      */
-    private static $base_product_controller = CatalogueProductController::class;
+    private static $base_product_controller;
     
     /**
      * Config variable to define what category class we are loading by
@@ -38,7 +37,7 @@ class CataloguePage extends Page
      * @var string
      * @config
      */
-    private static $category_class = "Category";
+    private static $category_class;
 
     /**
      * @var string

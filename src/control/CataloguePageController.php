@@ -88,8 +88,9 @@ class CataloguePageController extends PageController
         
         $object = $product_class::get()->filter($filter)->first();
         
-        if(!$object)
+        if (!$object) {
             return $this->httpError(404);
+        }
         
         $controller = $this->controller_for($object);
         $result = $controller->handleRequest($request, $this->model);
@@ -108,24 +109,33 @@ class CataloguePageController extends PageController
      */
     protected static function controller_for($object, $action = null)
     {
-        if ($object->class == 'CatalogueProduct') {
-            $controller = "CatalogueProductController";
-        } else {
+        $controller_class = Config::inst()->get(
+            CataloguePage::class, 
+            'base_product_controller'
+        );
+        
+        $controller = null;
+
+        if (isset($controller_class) && class_exists($controller_class)) {
+            $controller = $controller_class;
+        }
+        
+        if (!$controller) {
             $ancestry = ClassInfo::ancestry($object->class);
             
             while ($class = array_pop($ancestry)) {
-                if (class_exists($class . "_Controller")) break;
+                if (class_exists($class . "Controller")) {
+                    break;
+                }
             }
             
             // Find the controller we need, or revert to a default
             if ($class !== null) {
-                $controller = "{$class}_Controller";
-            } else if (ClassInfo::baseDataClass($object->class) == "CatalogueProduct") {
-                $controller = "CatalogueProductController";
+                $controller = "{$class}Controller";
             }
         }
 
-        if($action && class_exists($controller . '_' . ucfirst($action))) {
+        if ($action && class_exists($controller . '_' . ucfirst($action))) {
             $controller = $controller . '_' . ucfirst($action);
         }
         

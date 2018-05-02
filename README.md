@@ -30,6 +30,29 @@ in your project root.
 
 * Silverstripe Catalogue
 
+## Setup
+Unless you are using the SilverCommerce catalogue admin or frontend you will need to identify your custom product and category classes.
+
+### Custom Product or Categories
+
+To customise the Product and Category objects that are used via this
+page, you will need to change the **"product_class"** and **"category_class"**
+config variables on CataloguePage.
+
+It is important to be aware that CataloguePage will attempt to hand over
+the current request to a controller identified by the
+**"base_product_controller"** config variable. You will need to ensure
+that you create a conntroller that can render your product.
+
+The easiest way to do this is to set it in your config.yml as below:
+
+```
+ilateral\SilverStripe\CataloguePage\Model\CataloguePage:
+  product_class: 'Product'
+  category_class: 'Category'
+  base_product_controller: 'ProductController'
+```
+
 ## Usage
 
 Setup the catalogue as normal (add categories and then add products to
@@ -54,16 +77,5 @@ config.yml
 _config.php
     
     Catalogue::config()->enable_frontend = false;
-
-## Custom Product or Categories
-
-To customise the Product and Category objects that are used via this
-page, you will need to change the **"product_class"** and **"category_class"**
-config variables on CataloguePage.
-
-It is important to be aware that CataloguePage will attempt to hand over
-the current request to a controller identified by the
-**"base_product_controller"** config variable. You will need to ensure
-that you create a conntroller that can render your product.
 
 

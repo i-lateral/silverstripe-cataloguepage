@@ -1,3 +1,14 @@
 ---
-Name: cataloguepageconfig
+Only:
+  moduleexists: 'silvercommerce/catalogue-admin'
 ---
+ilateral\SilverStripe\CataloguePage\Model\CataloguePage:
+  product_class: 'Product'
+  category_class: 'Category'
+
+---
+Only:
+  moduleexists: 'silvercommerce/catalogue-frontend'
+---
+ilateral\SilverStripe\CataloguePage\Model\CataloguePage:
+  base_product_controller: 'ProductController'

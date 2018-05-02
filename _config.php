@@ -1,5 +1,6 @@
 <?php
 
+use ilateral\SilverStripe\CataloguePage\Model\CataloguePage;
 use ilateral\SilverStripe\CataloguePage\Tools\CataloguePageAssociationManager;
 
 if(class_exists("GoogleSitemap")) {
