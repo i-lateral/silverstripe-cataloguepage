@@ -23,8 +23,10 @@ in your project root.
 
 ## Requirements
 
-* Silverstripe Framework 3.1 +
-* Silverstripe CMS 3.1 +
+* Silverstripe Framework 4.0 +
+* Silverstripe CMS 4.0 +
+
+### Recommended
 * Silverstripe Catalogue
 
 ## Usage
