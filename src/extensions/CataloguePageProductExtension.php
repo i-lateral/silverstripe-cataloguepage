@@ -2,7 +2,6 @@
 
 namespace ilateral\SilverStripe\CataloguePage\Extensions;
 
-use SilverStripe\Dev\Debug;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Control\Director;
 use SilverStripe\ORM\DataExtension;
@@ -42,8 +41,6 @@ class CataloguePageProductExtension extends DataExtension
                 $this->owner->URLSegment,
                 $action
             );
-
-            Debug::show($link);
 
             $base = $link;
 

@@ -4,7 +4,6 @@ namespace ilateral\SilverStripe\CataloguePage\Model;
 
 use Product;
 use PageController;
-use SilverStripe\Dev\Debug;
 use SilverStripe\ORM\DataList;
 use SilverStripe\Core\ClassInfo;
 use SilverStripe\Control\Director;
