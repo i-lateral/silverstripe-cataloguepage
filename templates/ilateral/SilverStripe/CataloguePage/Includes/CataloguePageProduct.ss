@@ -1,6 +1,6 @@
 <div class="unit-33 col-md-4 col-sm-6 unit cataloguepage-product">
     <h2>
-        <a href="$Link">
+        <a href="$RelativeLink">
             $Title
         </a>
     </h2>
@@ -35,7 +35,7 @@
         </p>
         
         <p class="unit-40 col-md-5 col-sm-6 text-right right">
-            <a class="btn btn-olive btn-primary text-centered" href="$Link">View</a>
+            <a class="btn btn-olive btn-primary text-centered" href="$RelativeLink">View</a>
         </p>
     </div>
 </div>

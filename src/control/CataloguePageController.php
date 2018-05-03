@@ -7,6 +7,7 @@ use PageController;
 use SilverStripe\Dev\Debug;
 use SilverStripe\ORM\DataList;
 use SilverStripe\Core\ClassInfo;
+use SilverStripe\Control\Director;
 use SilverStripe\ORM\PaginatedList;
 use SilverStripe\Core\Config\Config;
 use SilverStripe\Core\Injector\Injector;
@@ -91,11 +92,14 @@ class CataloguePageController extends PageController
         if (!$object) {
             return $this->httpError(404);
         }
-        
-        $controller = $this->controller_for($object);
-        $result = $controller->handleRequest($request, $this->model);
 
-        return $result;
+        $this->customise(
+            [
+                'Product' => $object
+            ]
+        );
+
+        return $this->render();
     }
     
     /**
@@ -121,7 +125,7 @@ class CataloguePageController extends PageController
         }
         
         if (!$controller) {
-            $ancestry = ClassInfo::ancestry($object->class);
+            $ancestry = ClassInfo::ancestry($object->ClassName);
             
             while ($class = array_pop($ancestry)) {
                 if (class_exists($class . "Controller")) {
@@ -138,8 +142,12 @@ class CataloguePageController extends PageController
         if ($action && class_exists($controller . '_' . ucfirst($action))) {
             $controller = $controller . '_' . ucfirst($action);
         }
+
+        if (!class_exists($controller)) {
+            $controller = self::class;
+        }
         
-        return class_exists($controller) ? Injector::inst()->create($controller, $object) : $object;
+        return Injector::inst()->create($controller, $object);
     }
     
     
