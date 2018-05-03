@@ -42,7 +42,7 @@ class CataloguePage extends Page
     /**
      * @var string
      */
-    private static $icon = "cataloguepage/images/catalogue.png";
+    private static $icon = "resources/i-lateral/silverstripe-cataloguepage/client/dist/img/catalogue.png";
     
     /**
      * @var string

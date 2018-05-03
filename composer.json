@@ -21,6 +21,11 @@
     "suggest": {
         "silvercommerce/catalogue-admin": "*"
     },
+    "extra": {
+        "expose": [
+            "client/dist"
+        ]
+    },
     "autoload": {
         "psr-4": {
             "ilateral\\SilverStripe\\CataloguePage\\": "src/"
