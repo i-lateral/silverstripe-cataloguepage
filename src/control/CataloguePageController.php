@@ -61,6 +61,9 @@ class CataloguePageController extends PageController
                 ->filter(
                     $filter
                 );
+
+            $this->extend('updateCompiledProductsList', $raw_products);
+
             $products = new PaginatedList($raw_products, $this->getRequest());
             $products->setPageLength($page_length);
         }
