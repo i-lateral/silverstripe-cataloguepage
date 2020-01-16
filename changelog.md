@@ -36,4 +36,8 @@ This doucument covers all notable changes and additions.
 
 ## [2.0.2]
 
+* Added extension hook to modify compiledproduct list
+
+## [2.0.3]
+
 * Re-arrange URL segment field
