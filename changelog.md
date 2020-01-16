@@ -34,3 +34,6 @@ This doucument covers all notable changes and additions.
 
 * initial ss-4 bug fixing
 
+## [2.0.2]
+
+* Re-arrange URL segment field

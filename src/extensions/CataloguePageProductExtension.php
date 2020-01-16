@@ -105,18 +105,26 @@ class CataloguePageProductExtension extends DataExtension
             $parent_link
         );
 
-        $url_field = SiteTreeURLSegmentField::create("URLSegment", $this->owner->fieldLabel('URLSegment'))
-            ->setURLPrefix($baseLink);
-        
-        if ($fields->dataFieldByName("BasePrice")) {
-            $base_feild = "BasePrice";
-        } else {
-            $base_feild = "Content";
+        // If URL field already exists (say was added by catalogue frontend)
+        $url_field = $fields->dataFieldByName("URLSegment");
+
+        if (empty($url_field) || (!empty($url_field) && is_a($url_field, SiteTreeURLSegmentField::class))) {
+            $url_field = SiteTreeURLSegmentField::create(
+                "URLSegment",
+                $this->owner->fieldLabel('URLSegment')
+            );
+        }
+
+        $url_field->setURLPrefix($baseLink);
+        $base_field = null;
+
+        if ($fields->dataFieldByName("Content")) {
+            $base_field = "Content";
         }
         $fields->addFieldToTab(
             "Root.Main",
             $url_field,
-            $base_feild
+            $base_field
         );
     }
 
