@@ -9,16 +9,18 @@ use SilverStripe\Core\Config\Config;
 use ilateral\SilverStripe\CataloguePage\Model\CataloguePage;
 use ilateral\SilverStripe\CataloguePage\Extensions\CataloguePageProductExtension;
 
-class CataloguePageAssociationManager {
+class CataloguePageAssociationManager
+{
     
-    public static function setup() {
+    public static function setup()
+    {
         // Setup manually mapping of products to a catalogue page
         $product_class = Config::inst()->get(
-            CataloguePage::class, 
+            CataloguePage::class,
             'product_class'
         );
         $category_class = Config::inst()->get(
-            CataloguePage::class, 
+            CataloguePage::class,
             'category_class'
         );
 
@@ -29,8 +31,8 @@ class CataloguePageAssociationManager {
 
         // Setup many many associations
         Config::modify()->merge(
-            CataloguePage::class, 
-            'many_many', 
+            CataloguePage::class,
+            'many_many',
             $new
         );
 
@@ -72,7 +74,5 @@ class CataloguePageAssociationManager {
                 ]
             );
         }
-
     }
-    
 }

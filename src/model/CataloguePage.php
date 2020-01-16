@@ -15,7 +15,7 @@ class CataloguePage extends Page
     /**
      * Config variable to define what product class we are loading by
      * default
-     * 
+     *
      * @var string
      * @config
      */
@@ -24,7 +24,7 @@ class CataloguePage extends Page
     /**
      * Config variable to define what controller will be used to display
      * a product
-     * 
+     *
      * @var string
      * @config
      */
@@ -33,7 +33,7 @@ class CataloguePage extends Page
     /**
      * Config variable to define what category class we are loading by
      * default
-     * 
+     *
      * @var string
      * @config
      */
@@ -70,9 +70,9 @@ class CataloguePage extends Page
      */
     public function Children()
     {
-        if($this->Products()->exists() && $this->ProductChildren) {
+        if ($this->Products()->exists() && $this->ProductChildren) {
             return $this->SortedProducts();
-        } elseif($this->Categories()->exists() && $this->CategoryChildren) {
+        } elseif ($this->Categories()->exists() && $this->CategoryChildren) {
             return $this->SortedCategories();
         } else {
             return ArrayList::create();
@@ -104,8 +104,8 @@ class CataloguePage extends Page
         $fields = parent::getCMSFields();
         
         $fields->addFieldToTab(
-			'Root.Products',
-			GridField::create(
+            'Root.Products',
+            GridField::create(
                 _t("CataloguePage.Products", "Products"),
                 "",
                 $this->Products(),
@@ -115,11 +115,11 @@ class CataloguePage extends Page
                     "SortOrder"
                 )
             )
-		);
+        );
         
         $fields->addFieldToTab(
-			'Root.Categories',
-			GridField::create(
+            'Root.Categories',
+            GridField::create(
                 _t("CataloguePage.Categories", "Categories"),
                 "",
                 $this->Categories(),
@@ -129,7 +129,7 @@ class CataloguePage extends Page
                     "SortOrder"
                 )
             )
-		);
+        );
         
         return $fields;
     }
@@ -144,7 +144,7 @@ class CataloguePage extends Page
                 CheckboxField::create(
                     'ProductChildren',
                     'Show products as children'
-                ),                
+                ),
                 CheckboxField::create(
                     'CategoryChildren',
                     'Show categories as children'

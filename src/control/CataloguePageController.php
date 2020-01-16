@@ -43,7 +43,7 @@ class CataloguePageController extends PageController
     {
         $products = false;
         $product_class = Config::inst()->get(
-            CataloguePage::class, 
+            CataloguePage::class,
             'product_class'
         );
 
@@ -79,7 +79,7 @@ class CataloguePageController extends PageController
         $request->shiftAllParams();
         $urlsegment = $request->param('URLSegment');
         $product_class = Config::inst()->get(
-            CataloguePage::class, 
+            CataloguePage::class,
             'product_class'
         );
         
@@ -116,7 +116,7 @@ class CataloguePageController extends PageController
     protected static function controller_for($object, $action = null)
     {
         $controller_class = Config::inst()->get(
-            CataloguePage::class, 
+            CataloguePage::class,
             'base_product_controller'
         );
         

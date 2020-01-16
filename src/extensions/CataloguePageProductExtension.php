@@ -25,7 +25,7 @@ class CataloguePageProductExtension extends DataExtension
         if ($this->owner->CataloguePages()->exists()) {
             $page = $this->owner->CataloguePages()->first();
         } elseif ($category = $this->owner->Categories()->first()) {
-            if($category->CataloguePages()->exists()) {
+            if ($category->CataloguePages()->exists()) {
                 $page = $category->CataloguePages()->first();
             }
         }
@@ -57,20 +57,20 @@ class CataloguePageProductExtension extends DataExtension
             ->filter("Products.ID", $this->owner->ID)
             ->first();
         
-        if(!$page) {
+        if (!$page) {
             // Else check we have a product in a category that matches
             $categories = $this->owner->Categories();
             $page = null;
             
             // Find the first category page we have mapped
-            foreach($categories as $category) {
-                if(!$page && $category->CataloguePages()->exists()) {
+            foreach ($categories as $category) {
+                if (!$page && $category->CataloguePages()->exists()) {
                     $page = $category->CataloguePages()->first();
                 }
             }
         }
         
-        if($page) {
+        if ($page) {
             // Clear all ancestors
             foreach ($ancestors as $ancestor) {
                 $ancestors->remove($ancestor);
@@ -148,5 +148,4 @@ class CataloguePageProductExtension extends DataExtension
             $this->owner->URLSegment = ($count) ? $t . '-' . ($count + 1) : $t;
         }
     }
-    
 }
