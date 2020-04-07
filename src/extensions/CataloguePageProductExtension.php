@@ -108,7 +108,7 @@ class CataloguePageProductExtension extends DataExtension
         // If URL field already exists (say was added by catalogue frontend)
         $url_field = $fields->dataFieldByName("URLSegment");
 
-        if (empty($url_field) || (!empty($url_field) && is_a($url_field, SiteTreeURLSegmentField::class))) {
+        if (empty($url_field) || (!empty($url_field) && !is_a($url_field, SiteTreeURLSegmentField::class))) {
             $url_field = SiteTreeURLSegmentField::create(
                 "URLSegment",
                 $this->owner->fieldLabel('URLSegment')
